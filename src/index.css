@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #f5ebd8;
+  --color-forest: #1f3a1d;
+  --color-forest-light: #dceadf;
+  --color-warm-light: #f0e8d4;
+  --color-gold: #c8a86a;
+  --color-muted-green: #90b09a;
+
+  /* Noor Palette */
+  --color-noor-emerald: #0D3B2A;
+  --color-noor-gold: #D4A24C;
+  --color-noor-ivory: #FAF7F2;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+
+  --animate-shimmer: shimmer 1.5s infinite linear;
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-fade-up: fadeUp 0.8s ease-out forwards;
+
+  @keyframes shimmer {
+    0% { background-position: -700px 0; }
+    100% { background-position: 700px 0; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Base Styles */
+html, body {
+  background-color: #f5ebd8;
+  color: #1f3a1d;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Lenis Smooth Scroll Configuration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Shimmer Skeleton Loader Class */
+.shimmer {
+  background: linear-gradient(90deg, #e8dfc8 25%, #f0e8d6 50%, #e8dfc8 75%);
+  background-size: 700px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Custom Button Gradient Shimmer Sweep */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.btn-shimmer:hover::after {
+  left: 125%;
+}
+
+/* Custom Liquid Button Fill Effect */
+.liquid {
+  background-image: linear-gradient(var(--liquid-bg, #D4A24C) 0 0);
+  background-repeat: no-repeat;
+  background-position: calc(200% - var(--p, 0%)) 100%;
+  background-size: 200% var(--p, 0%);
+  transition: 0.4s var(--t, 0s) cubic-bezier(0.4, 0, 0.2, 1),
+    background-position 0.4s calc(0.4s - var(--t, 0s)) cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s ease-out;
+  border-bottom: 2px solid var(--liquid-bg, #D4A24C);
+}
+
+.liquid:hover {
+  --p: 100%;
+  --t: 0.4s;
+  color: var(--liquid-text, #fff) !important;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
