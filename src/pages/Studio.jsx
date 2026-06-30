@@ -84,12 +84,28 @@ export default function Studio() {
     <div className="bg-parchment min-h-screen">
       
       {/* Page Title with Cinematic Background - Full Width Edge to Edge */}
-      <div className="w-full pt-[72px] sm:pt-[88px] mb-8 sm:mb-12 bg-parchment">
+      
+      {/* Mobile View: Full Image (Responsive) */}
+      <div className="md:hidden w-full pt-[72px] sm:pt-[88px] mb-8 bg-parchment">
         <img 
           src="/products_banner.jpg" 
           alt="Products Banner" 
           className="w-full h-auto block"
         />
+      </div>
+
+      {/* Desktop View: Cinematic Background with min-height */}
+      <div 
+        className="hidden md:flex relative text-center mb-12 overflow-hidden pt-32 pb-24 px-6 sm:px-12 flex-col items-center justify-center min-h-[450px]"
+      >
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center" 
+          style={{ backgroundImage: "url('/products_banner.jpg')" }} 
+        />
+        {/* Content */}
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+        </div>
       </div>
 
       <div className="pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
