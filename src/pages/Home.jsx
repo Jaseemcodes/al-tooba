@@ -90,7 +90,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden">
       {/* 1. Fullscreen Hero Section */}
-      <section className="relative w-full min-h-[78.5vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 md:pt-0 md:pb-0 overflow-hidden">
+      <section className="relative w-full min-h-[78.5vh] flex flex-col items-center justify-end text-center px-6 pt-32 pb-16 md:pt-0 md:pb-0 overflow-hidden">
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -108,10 +108,10 @@ export default function Home() {
         <HeroParticles />
 
         {/* Hero Content Wrapper */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-0 sm:px-8 flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-0 sm:px-8 flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-12 pb-12">
           
           {/* Left: Text Content */}
-          <div className="w-full md:w-1/2 flex flex-col items-start justify-center text-left -mt-[15%] md:mt-0 relative z-30 px-6 sm:px-0">
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-end text-center md:text-left relative z-30 px-6 sm:px-0">
             {/* Headline */}
             <h1
               ref={headlineRef}
