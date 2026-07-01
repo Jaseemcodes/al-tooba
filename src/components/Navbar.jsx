@@ -6,6 +6,7 @@ import { useWishlistStore } from '../store/wishlistStore';
 import CartDrawer from './CartDrawer';
 import { products } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
+import logoSrc from '../assets/logo.png';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -125,8 +126,6 @@ export default function Navbar() {
   const navbarClasses = isTransparent
     ? 'bg-transparent text-forest border-transparent'
     : 'bg-parchment text-forest border-b border-[#d6cdb8] shadow-[0_4px_20px_rgba(31,58,29,0.03)]';
-
-  const logoSrc = '/src/assets/logo.png';
 
   const menuItems = [
     { name: 'HOME', path: '/' },

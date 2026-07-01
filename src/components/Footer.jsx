@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useToastStore } from '../store/toastStore';
+import logoSrc from '../assets/logo.png';
 
 export default function Footer() {
   const showToast = useToastStore((state) => state.showToast);
@@ -23,7 +24,7 @@ export default function Footer() {
           {/* Column 1: Brand & Logo */}
           <div className="flex flex-col space-y-6">
             <Link to="/" className="inline-block w-[180px] hover:opacity-95 transition-opacity">
-              <img src="/src/assets/logo.png" alt="Al-Tooba Logo" className="h-10 w-auto brightness-0 invert" />
+              <img src={logoSrc} alt="Al-Tooba Logo" className="h-10 w-auto brightness-0 invert" />
             </Link>
             <p className="text-sm leading-relaxed text-muted-green">
               Al Tooba® provides premium prophetic remedies and organic wellness solutions crafted with pure natural essence, shared with love.
