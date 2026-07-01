@@ -35,10 +35,11 @@ const LoadingFallback = () => (
 const GlobalSections = () => {
   const location = useLocation();
   
-  // Hide these promotional sections on Contact Us, Studio, and Product Detail pages
+  // Hide these promotional sections on Contact Us, Studio, About, and Product Detail pages
   if (
     location.pathname === '/contact-us' || 
     location.pathname === '/studio' ||
+    location.pathname === '/about' ||
     location.pathname.startsWith('/product/')
   ) {
     return null;
