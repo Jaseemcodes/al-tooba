@@ -93,27 +93,26 @@ export default function NoorCategories() {
         </div>
 
         {/* Horizontal scroll container on mobile, 7-column grid on desktop */}
-        <div className="relative group/slider">
+        <div className="relative group/slider flex flex-col">
           
-          {/* Left Scroll Button */}
-          <motion.button 
-            onClick={() => scroll('left')}
-            animate={{ x: [-2, 2, -2] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-2 sm:-ml-4 z-40 bg-white/90 backdrop-blur border border-[#D4A24C]/30 text-[#0D3B2A] w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#D4A24C] hover:text-white transition-colors lg:opacity-0 lg:group-hover/slider:opacity-100"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-          </motion.button>
+          {/* Slider Controls (Top Right) */}
+          <div className="flex justify-end gap-3 mb-4 z-40 lg:opacity-0 lg:group-hover/slider:opacity-100 transition-opacity duration-300 px-6 lg:px-0">
+            {/* Left Scroll Button */}
+            <button 
+              onClick={() => scroll('left')}
+              className="bg-white/90 backdrop-blur border border-[#D4A24C]/30 text-[#0D3B2A] w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-[#D4A24C] hover:text-white transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
 
-          {/* Right Scroll Button */}
-          <motion.button 
-            onClick={() => scroll('right')}
-            animate={{ x: [2, -2, 2] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-2 sm:-mr-4 z-40 bg-white/90 backdrop-blur border border-[#D4A24C]/30 text-[#0D3B2A] w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#D4A24C] hover:text-white transition-colors lg:opacity-0 lg:group-hover/slider:opacity-100"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-          </motion.button>
+            {/* Right Scroll Button */}
+            <button 
+              onClick={() => scroll('right')}
+              className="bg-white/90 backdrop-blur border border-[#D4A24C]/30 text-[#0D3B2A] w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-[#D4A24C] hover:text-white transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
 
           <motion.div 
             ref={scrollContainerRef}
@@ -127,7 +126,7 @@ export default function NoorCategories() {
               <motion.div 
                 key={idx}
                 variants={itemVariants}
-                className="relative min-w-[calc(50%-8px)] md:min-w-[260px] lg:min-w-0 aspect-[3/4.2] lg:aspect-[3/4.3] cursor-pointer group snap-center filter drop-shadow-[0_12px_16px_rgba(13,59,42,0.12)] block"
+                className="relative min-w-[calc(50%-8px)] md:min-w-[260px] lg:min-w-0 aspect-[3/4.6] lg:aspect-[3/4.7] cursor-pointer group snap-center filter drop-shadow-[0_12px_16px_rgba(13,59,42,0.12)] block"
               >
                 <Link to={`/studio?category=${encodeURIComponent(cat.name)}`} className="absolute inset-0 z-50 rounded-xl"></Link>
                 

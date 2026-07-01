@@ -8,8 +8,8 @@ export default function CartDrawer({ isOpen, onClose }) {
   const updateQty = useCartStore((state) => state.updateQty);
   const removeItem = useCartStore((state) => state.removeItem);
   
-  const total = useCartStore.getState().total;
-  const count = useCartStore.getState().count;
+  const total = useCartStore((state) => state.total);
+  const count = useCartStore((state) => state.count);
 
   // Prevent background scrolling when open
   useEffect(() => {

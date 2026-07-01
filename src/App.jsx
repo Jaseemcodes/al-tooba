@@ -20,6 +20,7 @@ const Journal = lazy(() => import('./pages/Journal'));
 const JournalPost = lazy(() => import('./pages/JournalPost'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
+const Login = lazy(() => import('./pages/Login'));
 
 // Loading screen fallback for lazy loading
 const LoadingFallback = () => (
@@ -40,6 +41,8 @@ const GlobalSections = () => {
     location.pathname === '/contact-us' || 
     location.pathname === '/studio' ||
     location.pathname === '/about' ||
+    location.pathname === '/login' ||
+    location.pathname === '/cart' ||
     location.pathname.startsWith('/product/')
   ) {
     return null;
@@ -80,6 +83,7 @@ export default function App() {
               <Route path="/journal/:slug" element={<JournalPost />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/login" element={<Login />} />
               
               {/* Fallback to Home */}
               <Route path="*" element={<Home />} />

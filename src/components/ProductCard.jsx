@@ -83,6 +83,7 @@ export default function ProductCard({ product, index = 0 }) {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!product.inStock) {
       showToast('Product is out of stock', 'error');
       return;
@@ -103,47 +104,46 @@ export default function ProductCard({ product, index = 0 }) {
   if (product.badge === 'LIMITED') badgeClass = 'bg-[#7a2020] text-parchment';
 
   return (
-    <div
+    <Link
+      to={`/product/${product.slug}`}
       ref={cardRef}
-      className="w-full rounded-[24px] md:rounded-[32px] bg-[#FAF6F0] p-3 md:p-4 flex flex-row md:flex-col md:h-[520px] transition-all relative group shadow-sm border border-black/5 gap-3 md:gap-0"
+      className="w-full rounded-[24px] md:rounded-[32px] bg-[#FAF6F0] p-3 md:p-4 flex flex-col h-full transition-all relative group shadow-sm border border-black/5 gap-3 md:gap-0 block cursor-pointer text-inherit hover:no-underline"
     >
       {/* Category Badge - Overhanging right edge */}
       <div className="absolute top-2 right-0 md:top-8 md:right-0 z-20 bg-[#F3EBE0] text-[#D1A551] text-[9px] md:text-[11px] font-bold px-3 py-1 md:px-4 md:py-1.5 rounded-l-[8px] md:rounded-l-[12px] shadow-sm uppercase tracking-wider">
         {product.category || 'Product'}
       </div>
 
-      {/* Image Container (Left on mobile, Top on desktop) */}
-      <div className="w-[40%] md:w-full shrink-0 flex flex-col">
-        <Link to={`/product/${product.slug}`} className="block h-full">
-          <div 
-            ref={imgContainerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeaveImg}
-            className="w-full aspect-[4/5] md:aspect-auto md:h-[260px] rounded-[16px] md:rounded-[24px] bg-[#F0EBE1] flex items-center justify-center overflow-hidden relative md:mb-5 shadow-inner"
-          >
-            <img
-              ref={imgRef}
-              src={showHoverImg && hoverImage ? hoverImage : (product.cardImage || product.images[0])}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out"
-              loading="lazy"
-            />
+      {/* Image Container */}
+      <div className="w-full shrink-0 flex flex-col">
+        <div 
+          ref={imgContainerRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeaveImg}
+          className="w-full aspect-[10/11] md:aspect-auto md:h-[260px] rounded-[16px] md:rounded-[24px] bg-[#F0EBE1] flex items-center justify-center overflow-hidden relative md:mb-5 shadow-inner"
+        >
+          <img
+            ref={imgRef}
+            src={showHoverImg && hoverImage ? hoverImage : (product.cardImage || product.images[0])}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
 
-            {/* Out of Stock Overlay */}
-            {!product.inStock && (
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20 backdrop-blur-sm">
-                <span className="text-[10px] md:text-sm font-sans font-bold tracking-widest px-2 py-1 md:px-4 md:py-2 rounded-full uppercase bg-[#7a2020] text-parchment">
-                  SOLD OUT
-                </span>
-              </div>
-            )}
-          </div>
-        </Link>
+          {/* Out of Stock Overlay */}
+          {!product.inStock && (
+            <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20 backdrop-blur-sm">
+              <span className="text-[10px] md:text-sm font-sans font-bold tracking-widest px-2 py-1 md:px-4 md:py-2 rounded-full uppercase bg-[#7a2020] text-parchment">
+                SOLD OUT
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Content Container (Right on mobile, Bottom on desktop) */}
       <div className="flex flex-col flex-1 relative py-1 md:py-0">
-        <Link to={`/product/${product.slug}`} className="flex-grow flex flex-col block">
+        <div className="flex-grow flex flex-col block">
           <div className="px-1 flex-grow flex flex-col">
             {/* Brand & Rating */}
             <div className="flex justify-between items-center mb-1.5 md:mb-3 mt-4 md:mt-0">
@@ -167,19 +167,19 @@ export default function ProductCard({ product, index = 0 }) {
               )}
             </div>
           </div>
-        </Link>
+        </div>
 
         {/* Add to Cart Button */}
-        <div className="mt-2 md:mt-2">
+        <div className="mt-2 md:mt-2 relative z-20">
           <button
             onClick={handleAddToCart}
             disabled={!product.inStock}
-            className="w-full rounded-[12px] md:rounded-[16px] py-2.5 md:py-4 text-[11px] md:text-[14px] font-sans font-bold uppercase tracking-widest bg-[#0D3B2A] text-white hover:bg-[#154c38] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 md:gap-2.5 cursor-pointer shadow-lg"
+            className="w-full rounded-[12px] md:rounded-[16px] py-2.5 md:py-4 text-[11px] md:text-[14px] font-sans font-bold uppercase tracking-widest bg-[#0D3B2A] text-white hover:bg-[#154c38] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 md:gap-2.5 cursor-pointer shadow-lg relative"
           >
-            <span className="md:hidden">{product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</span>
-            <span className="hidden md:inline">{product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</span>
+            <span className="md:hidden pointer-events-none">{product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</span>
+            <span className="hidden md:inline pointer-events-none">{product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</span>
             {product.inStock && (
-              <svg className="w-3.5 h-3.5 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-3.5 h-3.5 md:w-5 md:h-5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -188,6 +188,6 @@ export default function ProductCard({ product, index = 0 }) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

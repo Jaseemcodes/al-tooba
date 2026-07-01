@@ -129,3 +129,33 @@ html.lenis, html.lenis body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Mega Menu Animations */
+@keyframes megaSlideDown {
+  0% { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes megaCatIn {
+  0% { opacity: 0; transform: translateX(-18px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes megaCardIn {
+  0% { opacity: 0; transform: translateY(16px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.mega-menu-enter {
+  animation: megaSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.mega-cat-item {
+  opacity: 0;
+  animation: megaCatIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.mega-card-item {
+  opacity: 0;
+  animation: megaCardIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

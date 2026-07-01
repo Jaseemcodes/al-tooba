@@ -2,10 +2,11 @@ import { create } from 'zustand';
 
 export const useCartStore = create((set, get) => ({
   items: [],
+  total: 0,
+  count: 0,
   
   addItem: (product, variantName = null) => {
     const items = get().items;
-    // Find item with same product id AND same variant
     const existingIndex = items.findIndex(
       item => item.product.id === product.id && item.selectedVariant === variantName
     );
@@ -16,15 +17,17 @@ export const useCartStore = create((set, get) => ({
       if (variant) price = variant.price;
     }
 
+    let newItems = [];
     if (existingIndex > -1) {
-      const newItems = [...items];
+      newItems = [...items];
       newItems[existingIndex].quantity += 1;
-      set({ items: newItems });
     } else {
-      set({
-        items: [...items, { product, selectedVariant: variantName, price, quantity: 1 }]
-      });
+      newItems = [...items, { product, selectedVariant: variantName, price, quantity: 1 }];
     }
+
+    const total = newItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const count = newItems.reduce((sum, item) => sum + item.quantity, 0);
+    set({ items: newItems, total, count });
   },
 
   removeItem: (productId, variantName = null) => {
@@ -32,7 +35,9 @@ export const useCartStore = create((set, get) => ({
     const newItems = items.filter(
       item => !(item.product.id === productId && item.selectedVariant === variantName)
     );
-    set({ items: newItems });
+    const total = newItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const count = newItems.reduce((sum, item) => sum + item.quantity, 0);
+    set({ items: newItems, total, count });
   },
 
   updateQty: (productId, quantity, variantName = null) => {
@@ -48,15 +53,9 @@ export const useCartStore = create((set, get) => ({
       } else {
         newItems[existingIndex].quantity = quantity;
       }
-      set({ items: newItems });
+      const total = newItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const count = newItems.reduce((sum, item) => sum + item.quantity, 0);
+      set({ items: newItems, total, count });
     }
-  },
-
-  get total() {
-    return get().items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  },
-
-  get count() {
-    return get().items.reduce((sum, item) => sum + item.quantity, 0);
   }
 }));

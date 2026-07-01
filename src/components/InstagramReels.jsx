@@ -47,9 +47,9 @@ export default function InstagramReels() {
         <button 
           onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
           disabled={currentIndex === 0}
-          className="absolute left-4 md:left-12 z-50 p-4 rounded-full bg-white text-[#0D3B2A] hover:bg-[#D4A24C] hover:text-white transition-colors border border-[#0D3B2A]/10 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          className="absolute left-2 sm:left-4 md:left-12 z-50 p-4 rounded-full bg-transparent md:bg-white text-white md:text-[#0D3B2A] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] md:drop-shadow-none hover:bg-[#D4A24C] hover:text-white transition-colors border border-transparent md:border-[#0D3B2A]/10 shadow-none md:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+          <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </button>
 
         {/* 3D Carousel */}
@@ -109,9 +109,9 @@ export default function InstagramReels() {
         <button 
           onClick={() => setCurrentIndex(prev => Math.min(shorts.length - 1, prev + 1))}
           disabled={currentIndex === shorts.length - 1}
-          className="absolute right-4 md:right-12 z-50 p-4 rounded-full bg-white text-[#0D3B2A] hover:bg-[#D4A24C] hover:text-white transition-colors border border-[#0D3B2A]/10 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          className="absolute right-2 sm:right-4 md:right-12 z-50 p-4 rounded-full bg-transparent md:bg-white text-white md:text-[#0D3B2A] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] md:drop-shadow-none hover:bg-[#D4A24C] hover:text-white transition-colors border border-transparent md:border-[#0D3B2A]/10 shadow-none md:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+          <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
         </button>
       </div>
     </section>

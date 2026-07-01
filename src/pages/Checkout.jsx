@@ -91,7 +91,7 @@ export default function Checkout() {
     setOrderPlaced(true);
     
     // Clear Zustand cart store
-    useCartStore.setState({ items: [] });
+    useCartStore.setState({ items: [], total: 0, count: 0 });
     showToast('Order placed successfully!');
   };
 
