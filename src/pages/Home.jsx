@@ -21,8 +21,7 @@ export default function Home() {
 
   // Custom text splitter for character stagger animation
   const splitText = (text, isItalic = false) => {
-    // AL Tooba Theme: Forest Green (#0D3B2A) for contrast against light cream background
-    const textColor = isItalic ? 'text-[#D4A24C]' : 'text-[#0D3B2A]';
+    const textColor = isItalic ? 'text-[#D4A24C]' : 'text-white';
     const fontClass = isItalic ? 'font-serif italic font-normal' : 'font-serif font-bold';
     
     return text.split('').map((char, index) => (
@@ -92,12 +91,18 @@ export default function Home() {
     <div ref={containerRef} className="relative w-full overflow-hidden">
       {/* 1. Fullscreen Hero Section */}
       <section className="relative w-full min-h-[78.5vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 md:pt-0 md:pb-0 overflow-hidden">
-        {/* Background Image: User Provided Mehrab */}
-        <img
-          src="/hero_bg.jpg"
-          alt="Premium Islamic Background"
+        {/* Background Video */}
+        <video
           className="absolute inset-0 w-full h-full object-cover z-0"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4"
+          poster="/hero_bg.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0D3B2A]/15 via-transparent to-[#0D3B2A]/15 z-0" />
 
         {/* Floating Bokeh Particles */}
         <HeroParticles />
@@ -110,7 +115,7 @@ export default function Home() {
             {/* Headline */}
             <h1
               ref={headlineRef}
-              className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight font-serif select-none"
+              className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight font-serif select-none text-white drop-shadow-[0_16px_24px_rgba(0,0,0,0.5)]"
             >
               <div className="flex flex-wrap justify-start gap-x-4">
                 <span>{splitText('Reviving', false)}</span>
@@ -126,7 +131,7 @@ export default function Home() {
             <div className="max-w-xl w-full mt-8">
               <p
                 ref={subtextRef}
-                className="text-sm sm:text-base text-[#2A4B3C] leading-relaxed font-sans opacity-0"
+                className="text-sm sm:text-base text-white/90 leading-relaxed font-sans opacity-0 drop-shadow-[0_10px_18px_rgba(0,0,0,0.4)]"
               >
                 Embrace the healing wisdom of Tibb-e-Nabawi. We curate organic, Sunnah-inspired botanical remedies crafted from pure, halal ingredients to nourish your soul, mind, and body.
               </p>
